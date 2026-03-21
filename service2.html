@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Care Services Overview | CareNest</title>
-    <!-- Fonts -->
+    <title>Care Services Overview | CareConnect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,78 +14,69 @@
                 extend: {
                     colors: {
                         luxury: {
-                            50: '#f0f5fa',
-                            100: '#e1ebf4',
-                            200: '#c3d8e9',
-                            300: '#95bbd9',
-                            400: '#6199c3',
-                            500: '#3f7daa',
-                            600: '#2d638d',
-                            700: '#255073',
-                            800: '#214461',
-                            900: '#1e3a52',
+                            50: '#f0f5fa', 100: '#e1ebf4', 200: '#c3d8e9', 300: '#95bbd9',
+                            400: '#6199c3', 500: '#3f7daa', 600: '#2d638d', 700: '#255073',
+                            800: '#214461', 900: '#1e3a52',
                         },
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            light: '#F3E5AB'
-                        }
+                        gold: { DEFAULT: '#D4AF37', light: '#F3E5AB' },
+                        navy: '#0d1b2a', ink: '#1a3557', blue: '#2563a8',
+                        sky: '#5b9bd5', pale: '#eaf2fb', mist: '#f4f8fc',
+                        stone: '#6b7a8d', gray2: '#b0bec5', orange: '#e07b3a',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="font-sans text-gray-800 bg-luxury-50 antialiased flex flex-col min-h-screen">
-    
-    <!-- Navigation (Same as others) -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-luxury-100 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="flex items-center gap-2 group">
-                        <svg class="h-8 w-8 text-luxury-600 transition-transform group-hover:scale-105" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                        <span class="font-serif text-3xl font-semibold tracking-tight text-luxury-900">CareNest</span>
-                    </a>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-600 hover:text-luxury-600 transition-colors">Home</a>
-                    <a href="service2.html" class="text-luxury-600 font-medium hover:text-luxury-900 transition-colors border-b-2 border-luxury-600">Services</a>
-                    <a href="elder-care.html" class="text-gray-600 hover:text-luxury-600 transition-colors">Elder Care</a>
-                    <a href="childcare.html" class="text-gray-600 hover:text-luxury-600 transition-colors">Child Care</a>
-                    <a href="quick-service.html" class="text-gray-600 hover:text-luxury-600 transition-colors">Quick Service</a>
-                    <a href="contact.html" class="bg-luxury-600 hover:bg-luxury-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md">Contact Us</a>
-                </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-luxury-900 hover:text-luxury-600 p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    </button>
-                </div>
-            </div>
+    <!-- ========== NAVBAR ========== -->
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-pale">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-[70px]">
+            <!-- Logo -->
+            <a href="index.html" class="flex flex-col items-start leading-none no-underline group">
+                <span style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:0.18em;color:#1a3557;line-height:1" class="group-hover:text-blue transition-colors">CARECONNECT</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:0.52rem;font-weight:600;letter-spacing:0.25em;color:#6b7a8d;margin-top:3px">PREMIUM CARE</span>
+            </a>
+            <!-- Desktop Links -->
+            <ul class="hidden md:flex items-center gap-6 list-none m-0 p-0">
+                <li><a href="index.html" class="text-sm text-stone hover:text-blue no-underline transition-colors">Home</a></li>
+                <li><a href="service2.html" class="text-sm text-blue border-b-2 border-orange pb-0.5 no-underline">Services</a></li>
+                <li><a href="elder-care.html" class="text-sm text-stone hover:text-blue no-underline transition-colors">Elder Care</a></li>
+                <li><a href="childcare.html" class="text-sm text-stone hover:text-blue no-underline transition-colors">Child Care</a></li>
+                <li><a href="quick-service.html" class="text-sm text-stone hover:text-blue no-underline transition-colors">Quick Service</a></li>
+                <li><a href="contact.html" class="text-sm font-semibold bg-ink text-white px-5 py-2 rounded-full hover:bg-blue transition-colors no-underline">Contact Us</a></li>
+            </ul>
+            <!-- Hamburger -->
+            <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 bg-transparent border-none cursor-pointer p-1">
+                <span id="b1" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+                <span id="b2" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+                <span id="b3" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+            </button>
         </div>
-
-        <div id="mobile-menu" class="hidden absolute w-full bg-white shadow-xl border-t border-luxury-50 z-40">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="index.html" class="block px-3 py-3 text-gray-600 hover:text-luxury-700 hover:bg-luxury-50 rounded-lg">Home</a>
-                <a href="service2.html" class="block px-3 py-3 text-luxury-700 bg-luxury-50 rounded-lg font-medium">Services</a>
-                <a href="elder-care.html" class="block px-3 py-3 text-gray-600 hover:text-luxury-700 hover:bg-luxury-50 rounded-lg">Elder Care</a>
-                <a href="childcare.html" class="block px-3 py-3 text-gray-600 hover:text-luxury-700 hover:bg-luxury-50 rounded-lg">Child Care</a>
-                <a href="quick-service.html" class="block px-3 py-3 text-gray-600 hover:text-luxury-700 hover:bg-luxury-50 rounded-lg">Quick Service</a>
-                <a href="contact.html" class="block px-3 py-3 mt-4 text-center text-white bg-luxury-600 rounded-lg">Contact Us</a>
-            </div>
+        <!-- Mobile Dropdown -->
+        <div id="menu-box" class="hidden flex-col bg-white border-t border-pale px-6 py-4 gap-3 md:hidden">
+            <a href="index.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Home</a>
+            <a href="service2.html" class="text-sm text-navy py-2 border-b border-pale no-underline block font-semibold">Services</a>
+            <a href="elder-care.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Elder Care</a>
+            <a href="childcare.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Child Care</a>
+            <a href="quick-service.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Quick Service</a>
+            <a href="contact.html" class="block text-center text-sm font-semibold bg-ink text-white py-3 rounded-xl mt-2 no-underline">Contact Us</a>
         </div>
     </nav>
+    <!-- ========== END NAVBAR ========== -->
 
     <!-- Page Header -->
-    <header class="relative pt-32 pb-24 bg-luxury-50 overflow-hidden">
+    <header class="relative pt-28 pb-24 bg-luxury-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <h1 class="text-5xl lg:text-6xl font-serif font-bold text-luxury-900 mb-6">Our Comprehensive Services</h1>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -100,9 +89,9 @@
     <section class="py-16 bg-white flex-grow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-10">
-                
+
                 <!-- Elder Care -->
-                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500 reveal">
+                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500">
                     <div class="h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elder Care" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
@@ -119,7 +108,7 @@
                 </div>
 
                 <!-- Child Care -->
-                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500 reveal" style="transition-delay: 100ms;">
+                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500" style="transition-delay: 100ms;">
                     <div class="h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Child Care" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
@@ -136,7 +125,7 @@
                 </div>
 
                 <!-- Quick Service -->
-                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500 reveal" style="transition-delay: 200ms;">
+                <div class="bg-luxury-50 rounded-3xl overflow-hidden shadow-lg border border-luxury-100 flex flex-col group hover:-translate-y-2 transition-transform duration-500" style="transition-delay: 200ms;">
                     <div class="h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Quick Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
@@ -160,27 +149,54 @@
     <footer class="bg-white border-t border-luxury-100 pt-16 pb-8 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <a href="index.html" class="flex items-center gap-2 mb-6 text-luxury-900">
-                        <svg class="h-8 w-8 text-luxury-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                        <span class="font-serif text-3xl font-semibold tracking-tight">CareNest</span>
+                <div class="col-span-1">
+                    <a href="index.html" class="flex flex-col items-start leading-none no-underline mb-5">
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;letter-spacing:0.18em;color:#1a3557;line-height:1">CARECONNECT</span>
+                        <span style="font-family:'Poppins',sans-serif;font-size:0.5rem;font-weight:600;letter-spacing:0.25em;color:#6b7a8d;margin-top:3px">PREMIUM CARE</span>
                     </a>
+                    <p class="text-gray-500 leading-relaxed text-sm">Elevating the standard of personal care with professional, compassionate, and reliable services for your loved ones.</p>
                 </div>
                 <div>
                     <h4 class="font-bold text-luxury-900 mb-6 uppercase tracking-wider text-sm">Services</h4>
-                    <ul class="space-y-4 text-sm text-gray-500">
+                    <ul class="space-y-4 text-sm text-gray-500 list-none p-0">
                         <li><a href="elder-care.html" class="hover:text-luxury-600 transition-colors">Elder Care</a></li>
                         <li><a href="childcare.html" class="hover:text-luxury-600 transition-colors">Child Care</a></li>
                         <li><a href="quick-service.html" class="hover:text-luxury-600 transition-colors">Quick Service</a></li>
+                        <li><a href="service2.html" class="hover:text-luxury-600 transition-colors">All Services</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-luxury-100 pt-8 mt-8 flex px-2 justify-between">
-                <p class="text-sm text-gray-400">&copy; 2024 CareNest Inc. All rights reserved.</p>
+            <div class="border-t border-luxury-100 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400">&copy; 2024 CareConnect Inc. All rights reserved.</p>
+                <p class="text-sm text-gray-400 mt-2 md:mt-0">Designed with care.</p>
             </div>
         </div>
     </footer>
 
-    <script src="sricpt.js"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            document.getElementById('topnav').classList.toggle('shadow-lg', window.scrollY > 30);
+        });
+        var menuOpen = false;
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            menuOpen = !menuOpen;
+            var box = document.getElementById('menu-box');
+            box.classList.toggle('hidden', !menuOpen);
+            box.classList.toggle('flex', menuOpen);
+            document.getElementById('b1').style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+            document.getElementById('b2').style.opacity = menuOpen ? '0' : '1';
+            document.getElementById('b3').style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+        });
+        document.getElementById('menu-box').querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                menuOpen = false;
+                document.getElementById('menu-box').classList.add('hidden');
+                document.getElementById('menu-box').classList.remove('flex');
+                document.getElementById('b1').style.transform = '';
+                document.getElementById('b2').style.opacity = '1';
+                document.getElementById('b3').style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>
