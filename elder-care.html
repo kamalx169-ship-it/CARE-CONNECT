@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareConnect - Elder Care</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config={theme:{extend:{fontFamily:{title:['Playfair Display','serif'],body:['Poppins','sans-serif']},colors:{navy:'#0d1b2a',ink:'#1a3557',blue:'#2563a8',sky:'#5b9bd5',pale:'#eaf2fb',mist:'#f4f8fc',stone:'#6b7a8d',gray2:'#b0bec5',orange:'#e07b3a'},keyframes:{goUp:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-8px)'}},marquee:{'0%':{transform:'translateX(0)'},'100%':{transform:'translateX(-50%)'}},blink:{'0%,100%':{opacity:'1'},'50%':{opacity:'0.3'}}},animation:{float:'goUp 4s ease-in-out infinite',marquee:'marquee 35s linear infinite',blink:'blink 2s ease-in-out infinite'}}}}
+</script>
+<style>
+  body{font-family:'Poppins',sans-serif}h1,h2,h3{font-family:'Playfair Display',serif}
+  .hero-photo{background:url('https://images.unsplash.com/photo-1498855926480-d98472c7158d?auto=format&fit=crop&w=1920&q=80')center/cover}
+  .show-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.show-up.visible{opacity:1;transform:none}
+  .team-info{transform:translateY(50px);transition:transform .4s ease}.team-card:hover .team-info{transform:translateY(0)}
+  .team-extra{opacity:0;transition:opacity .3s ease .1s}.team-card:hover .team-extra{opacity:1}
+  .reviews-box:hover .reviews-track{animation-play-state:paused}
+  select{-webkit-appearance:none;appearance:none}
+  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#5b9bd5;border-radius:3px}
+</style>
+</head>
+<body class="bg-mist text-navy overflow-x-hidden">
+
+<!-- NAV -->
+<nav id="topnav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-pale">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-[70px]">
+    <a href="index.html" class="flex flex-col items-start leading-none no-underline group">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:0.18em;color:#1a3557;line-height:1" class="group-hover:text-blue transition-colors">CARECONNECT</span>
+      <span style="font-family:'Poppins',sans-serif;font-size:0.52rem;font-weight:600;letter-spacing:0.25em;color:#6b7a8d;margin-top:3px">ELDER CARE</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-6 list-none">
+      <li><a href="index.html" class="text-sm text-stone hover:text-blue no-underline">Home</a></li>
+      <li><a href="services.html" class="text-sm text-stone hover:text-blue no-underline">Services</a></li>
+      <li><a href="elder-care.html" class="text-sm text-blue border-b-2 border-orange pb-0.5 no-underline">Elder Care</a></li>
+      <li><a href="child-care.html" class="text-sm text-stone hover:text-blue no-underline">Child Care</a></li>
+      <li><a href="quick-service.html" class="text-sm text-stone hover:text-blue no-underline">Quick Service</a></li>
+      <li><a href="#booking" class="text-sm font-semibold bg-ink text-white px-5 py-2 rounded-full hover:bg-blue transition-colors no-underline">Book Now</a></li>
+    </ul>
+    <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 bg-transparent border-none cursor-pointer p-1">
+      <span id="b1" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+      <span id="b2" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+      <span id="b3" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+    </button>
+  </div>
+  <div id="menu-box" class="hidden flex-col bg-white border-t border-pale px-6 py-4 gap-3 md:hidden">
+    <a href="index.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Home</a>
+    <a href="services.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Services</a>
+    <a href="elder-care.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Elder Care</a>
+    <a href="child-care.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Child Care</a>
+    <a href="quick-service.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Quick Service</a>
+    <a href="#booking" class="block text-center text-sm font-semibold bg-ink text-white py-3 rounded-xl mt-2 no-underline">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="relative min-h-screen flex items-center pt-[70px] bg-navy overflow-hidden">
+  <div class="hero-photo absolute inset-0 opacity-20"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-ink/60"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full py-16 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-sky/80 border border-sky/30 px-4 py-1.5 rounded-full mb-6"><span class="w-1.5 h-1.5 bg-sky rounded-full animate-blink"></span> Signature Elder Care</div>
+        <h1 class="font-title text-6xl lg:text-7xl font-normal text-white leading-[1.1] mb-5">Redefining<br><em class="text-amber-300 italic">Dignity</em><br>&amp; Comfort</h1>
+        <p class="text-lg text-white/60 font-light leading-relaxed max-w-lg mb-8">Premium, specialised compassionate care delivered at home — because home is where healing begins.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#booking" class="inline-flex items-center gap-2 bg-blue text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:-translate-y-0.5 transition-all no-underline">Schedule Consultation <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#why" class="inline-flex items-center gap-2 text-white border border-white/35 px-7 py-3 rounded-full text-sm hover:bg-white/10 transition-all no-underline">Learn More</a>
+        </div>
+        <div class="grid grid-cols-3 border-t border-white/10 mt-10 pt-7">
+          <div class="pr-6 border-r border-white/10"><div class="font-title text-4xl text-amber-300">98%</div><div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Family satisfaction</div></div>
+          <div class="px-6 border-r border-white/10"><div class="font-title text-4xl text-amber-300">24/7</div><div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Live support</div></div>
+          <div class="pl-6"><div class="font-title text-4xl text-amber-300">500+</div><div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Families served</div></div>
+        </div>
+      </div>
+      <div class="relative h-[480px] hidden lg:block">
+        <div class="absolute right-0 top-0 w-[72%] h-[82%] rounded-[32px_32px_32px_80px] overflow-hidden shadow-2xl"><img src="images/h2.webp" class="w-full h-full object-cover" alt="Caregiver" loading="lazy"></div>
+        <div class="absolute left-0 bottom-0 w-[50%] h-[54%] rounded-[80px_32px_32px_32px] overflow-hidden shadow-xl border-4 border-navy"><img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Elder care" loading="lazy"></div>
+        <div class="absolute top-7 left-[22%] bg-white/10 border border-white/20 rounded-2xl p-4 z-10 animate-float"><div class="font-title text-4xl text-amber-300">24/7</div><div class="text-[11px] text-white/60 mt-1">Premium Support</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHY -->
+<section class="bg-pale py-20" id="why">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="show-up text-center max-w-2xl mx-auto mb-12">
+      <div class="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">Why CareConnect <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+      <h2 class="font-title text-4xl font-normal leading-snug">A new standard for <em class="italic text-blue">elder care</em></h2>
+      <p class="text-[15px] text-stone font-light leading-relaxed mt-4">We believe care should restore joy, preserve independence, and let families breathe easy — knowing their loved ones are truly thriving.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"><div class="w-11 h-11 bg-blue/10 rounded-xl flex items-center justify-center text-xl mb-4">🌿</div><h3 class="font-title text-base font-bold mb-2">Holistic Wellbeing</h3><p class="text-xs text-stone leading-relaxed mb-3">Physical health, mental stimulation, emotional connection, and spiritual comfort — not just medical needs.</p><div class="flex flex-wrap gap-1.5"><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Mind &amp; Body</span><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Emotional Support</span></div></div>
+      <div class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"><div class="w-11 h-11 bg-orange/10 rounded-xl flex items-center justify-center text-xl mb-4">🔬</div><h3 class="font-title text-base font-bold mb-2">Vetted Caregivers</h3><p class="text-xs text-stone leading-relaxed mb-3">Every caregiver passes a 7-step screening — background checks, clinical assessment, and a probationary trial.</p><div class="flex flex-wrap gap-1.5"><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800">CPR Certified</span><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800">Insured</span></div></div>
+      <div class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"><div class="w-11 h-11 bg-ink/10 rounded-xl flex items-center justify-center text-xl mb-4">📱</div><h3 class="font-title text-base font-bold mb-2">Family Transparency</h3><p class="text-xs text-stone leading-relaxed mb-3">Live health updates, daily reports, activity photos, and instant emergency alerts — so you're never in the dark.</p><div class="flex flex-wrap gap-1.5"><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Live Updates</span><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Alerts</span></div></div>
+      <div class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"><div class="w-11 h-11 bg-navy/10 rounded-xl flex items-center justify-center text-xl mb-4">🤝</div><h3 class="font-title text-base font-bold mb-2">Personalised Plans</h3><p class="text-xs text-stone leading-relaxed mb-3">Every plan is custom-built after an in-home assessment and co-designed with both the elder and the family.</p><div class="flex flex-wrap gap-1.5"><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Tailored Plans</span><span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Reviews</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="bg-white py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-14">
+      <div class="show-up rounded-3xl overflow-hidden h-80 lg:h-96"><img src="images/w1.jpg" class="w-full h-full object-cover" alt="Activity" loading="lazy"></div>
+      <div class="show-up">
+        <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">Daily Programs <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+        <h2 class="font-title text-4xl font-normal leading-snug">Enriching <em class="italic text-blue">mind,<br>body</em> &amp; spirit</h2>
+        <p class="text-[15px] text-stone font-light leading-relaxed mt-4">Boredom is the enemy of vitality. We weave purposeful, joyful activity into every day — matched to your loved one's abilities, history, and passions.</p>
+        <a href="#booking" class="mt-6 inline-flex items-center gap-2 bg-blue text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:-translate-y-0.5 transition-all no-underline">Design a Custom Program <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="show-up grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300"><span class="text-4xl block mb-3">📚</span><h4 class="font-semibold text-sm text-navy mb-1.5">Storytelling &amp; Reading</h4><p class="text-xs text-stone leading-relaxed">Daily sessions tailored to their favourite genres and cognitive level</p></div>
+      <div class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300"><span class="text-4xl block mb-3">🚶</span><h4 class="font-semibold text-sm text-navy mb-1.5">Light Exercise</h4><p class="text-xs text-stone leading-relaxed">Gentle walks, chair yoga, and physio-guided movement for strength</p></div>
+      <div class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300"><span class="text-4xl block mb-3">🎵</span><h4 class="font-semibold text-sm text-navy mb-1.5">Music &amp; Art Therapy</h4><p class="text-xs text-stone leading-relaxed">Certified programs proven to reduce anxiety and boost mood</p></div>
+      <div class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300"><span class="text-4xl block mb-3">🧩</span><h4 class="font-semibold text-sm text-navy mb-1.5">Cognitive Games</h4><p class="text-xs text-stone leading-relaxed">Memory puzzles, trivia, and brain-training for mental acuity</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section class="bg-ink py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="show-up">
+        <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-amber-300 mb-3">Health &amp; Nutrition <span class="w-10 h-0.5 bg-amber-300 opacity-60"></span></div>
+        <h2 class="font-title text-4xl font-normal leading-snug text-white">Food is <em class="italic text-amber-300">medicine</em> —<br>we take it seriously</h2>
+        <p class="text-[15px] text-white/60 font-light leading-relaxed mt-4 mb-8">Proper nutrition is the foundation of graceful aging. Our caregivers, guided by dietitian-approved protocols, ensure every meal supports your loved one's health goals.</p>
+        <ul class="space-y-3 list-none">
+          <li class="flex items-start gap-3 text-sm text-white/80"><span class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Chef-designed, balanced diet plans reviewed by registered dietitians</li>
+          <li class="flex items-start gap-3 text-sm text-white/80"><span class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Strict hydration monitoring with hourly check-ins</li>
+          <li class="flex items-start gap-3 text-sm text-white/80"><span class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Daily vitals — blood pressure, heart rate, temperature</li>
+          <li class="flex items-start gap-3 text-sm text-white/80"><span class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Precision medication scheduling with zero-miss guarantees</li>
+          <li class="flex items-start gap-3 text-sm text-white/80"><span class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Weekly health summary reports sent to your phone</li>
+        </ul>
+      </div>
+      <div class="show-up hidden lg:flex flex-col gap-4">
+        <div class="w-full h-[300px] rounded-3xl overflow-hidden shadow-2xl"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover" alt="Nutrition" loading="lazy"></div>
+        <div class="w-[60%] bg-white/10 border border-white/15 rounded-2xl p-5 text-white"><div class="text-2xl mb-2">🩺</div><h4 class="font-semibold text-sm">Daily Health Check</h4><p class="text-xs text-white/50 mt-1">Vitals reviewed every morning — sent directly to you</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY APP -->
+<section class="bg-pale py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="show-up">
+        <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">Family Portal <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+        <h2 class="font-title text-4xl font-normal leading-snug">Total transparency.<br><em class="italic text-blue">Total peace</em> of mind.</h2>
+        <p class="text-[15px] text-stone font-light leading-relaxed mt-4">Never wonder about your parent's wellbeing. Our secure portal delivers real-time updates to your device, keeping you connected without intruding on their care.</p>
+        <div class="grid grid-cols-2 gap-4 mt-7">
+          <div class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"><span class="text-2xl block mb-2">📅</span><h4 class="font-semibold text-sm text-navy mb-1">Daily Care Reports</h4><p class="text-xs text-stone leading-relaxed">Detailed logs of meals, mood, activities, and medication</p></div>
+          <div class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"><span class="text-2xl block mb-2">❤️</span><h4 class="font-semibold text-sm text-navy mb-1">Health Updates</h4><p class="text-xs text-stone leading-relaxed">Live vitals, mood tracking, and anomaly alerts</p></div>
+          <div class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"><span class="text-2xl block mb-2">📸</span><h4 class="font-semibold text-sm text-navy mb-1">Activity Photos</h4><p class="text-xs text-stone leading-relaxed">Daily snapshots showing your loved one is smiling</p></div>
+          <div class="bg-red-50 rounded-2xl p-5 border border-red-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"><span class="text-2xl block mb-2">⚠️</span><h4 class="font-semibold text-sm text-red-900 mb-1">Emergency Alerts</h4><p class="text-xs text-red-500 leading-relaxed">Instant push notifications for anything urgent</p></div>
+        </div>
+      </div>
+      <div class="show-up relative h-[480px] hidden lg:block">
+        <div class="absolute top-[4%] right-0 w-[86%] h-[88%] rounded-3xl overflow-hidden shadow-2xl"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover" alt="App" loading="lazy"></div>
+        <div class="absolute bottom-8 left-0 bg-white rounded-2xl p-5 shadow-2xl w-[62%] flex items-center gap-3 animate-float"><div class="w-11 h-11 bg-pale rounded-xl flex items-center justify-center text-xl flex-shrink-0">✅</div><div><h5 class="font-semibold text-sm text-navy">Medication taken at 9:00 AM</h5><p class="text-xs text-stone mt-0.5">Your mother is feeling great today</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="bg-white py-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">What Families Say <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+    <h2 class="font-title text-4xl font-normal leading-snug mb-10">Real stories from <em class="italic text-blue">real families</em></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col"><div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div><p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"CareConnect gave my father back his dignity. The caregiver Sarah is phenomenal — Dad actually looks forward to her visits."</p><div class="flex items-center gap-2.5 mt-auto"><div class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">RP</div><div><div class="text-xs font-semibold text-navy">Rajan Pillai</div><div class="text-xs text-gray2">Son of a care recipient</div></div></div></div>
+      <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col"><div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div><p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"The family app is incredible. I live in another city and still feel in the loop. Daily photos, health updates — it changed everything."</p><div class="flex items-center gap-2.5 mt-auto"><div class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">SN</div><div><div class="text-xs font-semibold text-navy">Sunita Nair</div><div class="text-xs text-gray2">Daughter, Bangalore</div></div></div></div>
+      <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col"><div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div><p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"After Mum's hip surgery, the rehab support from Michael was world-class. She recovered three weeks faster than expected."</p><div class="flex items-center gap-2.5 mt-auto"><div class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">AK</div><div><div class="text-xs font-semibold text-navy">Arjun Kumar</div><div class="text-xs text-gray2">Family of post-op patient</div></div></div></div>
+      <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col"><div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div><p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"The personalised care plan was unlike anything we'd seen. They matched Dad with the perfect caregiver on the very first try."</p><div class="flex items-center gap-2.5 mt-auto"><div class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">MV</div><div><div class="text-xs font-semibold text-navy">Meera Varghese</div><div class="text-xs text-gray2">Daughter, Kochi</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE PLANS -->
+<section class="bg-mist py-20" id="plans">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-12 show-up">
+      <div class="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">Our Care Plans <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+      <h2 class="font-title text-4xl font-normal leading-snug text-navy">Affordable plans for every <em class="italic text-blue">family's need</em></h2>
+      <p class="text-sm text-stone font-light mt-4">Choose the right level of care. All plans billed yearly. Taxes at actuals.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+      <div class="show-up bg-white rounded-2xl border border-blue/10 shadow-md flex flex-col overflow-hidden">
+        <div class="px-7 pt-7 pb-6 border-b border-blue/10"><div class="text-[10px] font-semibold tracking-[2px] uppercase text-stone mb-2">Starter</div><h3 class="font-title text-2xl font-normal text-navy">Basic Annual Care</h3><div class="flex items-end gap-1 mt-3 mb-1"><span class="font-title text-4xl text-blue leading-none">₹6,999</span><span class="text-sm text-stone mb-1">/mo</span></div><p class="text-[11px] text-stone mb-4">Billed yearly · taxes at actuals</p><a href="#booking" class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get Started</a></div>
+        <div class="px-7 py-5 flex flex-col flex-1"><ul class="space-y-2.5 flex-1"><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Doctor appointments &amp; 6 visits/year</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Medicine delivery at home</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>24/7 Care Support Line</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Home nursing &amp; bedside companion</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>General physician &amp; physio home visits</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>On-demand ambulance on call</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Real-time family updates</li></ul><div class="mt-6 pt-4 border-t border-blue/10 text-center"><span class="text-[11px] font-semibold text-orange">🎁 Expenses worth ₹38,000 covered</span></div></div>
+      </div>
+      <div class="show-up bg-white rounded-2xl border-2 border-blue shadow-xl flex flex-col overflow-hidden">
+        <div class="bg-blue text-white text-[10px] font-bold tracking-[2px] uppercase text-center py-2">⭐ Most Popular</div>
+        <div class="px-7 pt-5 pb-6 border-b border-blue/10"><div class="text-[10px] font-semibold tracking-[2px] uppercase text-blue mb-2">Recommended</div><h3 class="font-title text-2xl font-normal text-navy">Optimal Annual Plan</h3><div class="flex items-end gap-1 mt-3 mb-1"><span class="font-title text-4xl text-blue leading-none">₹9,999</span><span class="text-sm text-stone mb-1">/mo</span></div><p class="text-[11px] text-stone mb-4">Billed yearly · taxes at actuals</p><a href="#booking" class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get Started</a></div>
+        <div class="px-7 py-5 flex flex-col flex-1"><div class="flex items-center gap-2 bg-blue/5 rounded-lg px-3 py-2 mb-3"><span class="text-blue text-xs">←</span><span class="text-xs text-stone font-medium">Everything in Basic, plus:</span></div><ul class="space-y-2.5 flex-1"><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>At-home diagnostics &amp; X-rays</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Comprehensive vision care</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>12 doctor visits/year + specialist opinions</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Mental wellness counselling</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Grocery &amp; errand assistance</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Dedicated care manager</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Monthly wellness check report</li></ul><div class="mt-6 pt-4 border-t border-blue/10 text-center"><span class="text-[11px] font-semibold text-orange">🎁 Expenses worth ₹63,000 covered</span></div></div>
+      </div>
+      <div class="show-up bg-white rounded-2xl border border-blue/10 shadow-md flex flex-col overflow-hidden">
+        <div class="px-7 pt-7 pb-6 border-b border-blue/10"><div class="text-[10px] font-semibold tracking-[2px] uppercase text-stone mb-2">Complete</div><h3 class="font-title text-2xl font-normal text-navy">Comprehensive Plan</h3><div class="flex items-end gap-1 mt-3 mb-1"><span class="font-title text-4xl text-blue leading-none">₹14,999</span><span class="text-sm text-stone mb-1">/mo</span></div><p class="text-[11px] text-stone mb-4">Billed yearly · taxes at actuals</p><a href="#booking" class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get Started</a></div>
+        <div class="px-7 py-5 flex flex-col flex-1"><div class="flex items-center gap-2 bg-blue/5 rounded-lg px-3 py-2 mb-3"><span class="text-blue text-xs">←</span><span class="text-xs text-stone font-medium">Everything in Optimal, plus:</span></div><ul class="space-y-2.5 flex-1"><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Home dental, speech &amp; hearing care</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Homoeopathy consultations</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Surgery planning &amp; hospital support</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Unlimited doctor visits</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Legal &amp; financial helpline</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Travel &amp; holiday escort service</li><li class="flex gap-2.5 text-xs text-stone"><span class="text-blue flex-shrink-0 mt-0.5">✓</span>Weekly home chef meal service</li></ul><div class="mt-6 pt-4 border-t border-blue/10 text-center"><span class="text-[11px] font-semibold text-orange">🎁 Expenses worth ₹1,10,000 covered</span></div></div>
+      </div>
+    </div>
+    <p class="show-up text-center text-xs text-stone mt-8">All plans include access to the CareConnect family app · No hidden charges · Cancel anytime</p>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="bg-white py-20" id="booking">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="show-up grid grid-cols-1 md:grid-cols-5 rounded-3xl overflow-hidden shadow-2xl border border-blue/10">
+      <div class="md:col-span-2 bg-ink p-10 lg:p-12 flex flex-col relative overflow-hidden">
+        <div class="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-sky/10 pointer-events-none"></div>
+        <h2 class="font-title text-4xl font-normal italic text-white leading-snug mb-4 relative z-10">Reserve<br>Premium Care</h2>
+        <p class="text-sm text-white/55 font-light leading-relaxed mb-auto pb-8 relative z-10">To ensure the highest standard, we accept a limited number of new families each month. Complete your details for priority placement.</p>
+        <div class="mt-auto flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl p-4 relative z-10"><div class="w-11 h-11 rounded-xl bg-orange/20 flex items-center justify-center text-lg flex-shrink-0">📞</div><div><div class="text-[10px] uppercase tracking-widest text-white/40 mb-0.5">Direct Line</div><div class="font-title text-lg text-white">+1 (800) 555-CARE</div></div></div>
+      </div>
+      <div class="md:col-span-3 bg-white p-10 lg:p-12">
+        <h3 class="font-title text-2xl font-bold text-navy mb-8">Tell us about your loved one</h3>
+        <form id="bookForm" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+            <div class="flex flex-col gap-1.5"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="fname">First Name</label><input type="text" id="fname" placeholder="John" required class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors"></div>
+            <div class="flex flex-col gap-1.5"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="lname">Last Name</label><input type="text" id="lname" placeholder="Doe" required class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors"></div>
+          </div>
+          <div class="h-px bg-blue/10 my-4"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+            <div class="flex flex-col gap-1.5"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="phone">Phone</label><input type="tel" id="phone" placeholder="(555) 000-0000" required class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors"></div>
+            <div class="flex flex-col gap-1.5"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="email">Email</label><input type="email" id="email" placeholder="john@example.com" required class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors"></div>
+          </div>
+          <div class="h-px bg-blue/10 my-4"></div>
+          <div class="flex flex-col gap-1.5 mb-5"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="program">Care Program</label><div class="relative"><select id="program" required class="w-full bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none cursor-pointer pr-5"><option value="" disabled selected>Select a program…</option><option value="basic">Basic Annual Care - ₹6,999/mo</option><option value="optimal">Optimal Annual Plan - ₹9,999/mo</option><option value="comprehensive">Comprehensive Plan - ₹14,999/mo</option><option value="custom">Custom Plan - Contact Us</option></select><span class="absolute right-0 top-1/2 -translate-y-1/2 text-stone text-sm pointer-events-none">↓</span></div></div>
+          <div class="h-px bg-blue/10 my-4"></div>
+          <div class="flex flex-col gap-1.5 mb-8"><label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="date">Preferred Start Date</label><input type="date" id="date" required class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none focus:border-orange transition-colors"></div>
+          <button type="submit" id="sub-btn" class="w-full bg-ink text-white py-4 rounded-2xl text-base font-semibold flex items-center justify-center gap-2 hover:bg-blue hover:-translate-y-0.5 transition-all duration-200 shadow-lg">Secure Placement <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy pt-16 pb-7">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+      <div>
+        <a href="index.html" class="flex flex-col items-start leading-none no-underline mb-5"><span style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;letter-spacing:0.18em;color:#e8f2fb;line-height:1">CARECONNECT</span><span style="font-family:'Poppins',sans-serif;font-size:0.5rem;font-weight:600;letter-spacing:0.25em;color:rgba(255,255,255,0.35);margin-top:3px">ELDER CARE</span></a>
+        <p class="text-sm text-white/40 leading-relaxed">Elevating the standard of personal care with professional, compassionate, and reliable services for your loved ones.</p>
+      </div>
+      <div><h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Services</h4><ul class="space-y-3 list-none"><li><a href="elder-care.html" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Elder Care</a></li><li><a href="child-care.html" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Child Care</a></li><li><a href="quick-service.html" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Quick Service</a></li><li><a href="services.html" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">All Services</a></li></ul></div>
+      <div><h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Company</h4><ul class="space-y-3 list-none"><li><a href="#" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">About Us</a></li><li><a href="contact.html" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Contact</a></li><li><a href="#" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Careers</a></li><li><a href="#" class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Privacy Policy</a></li></ul></div>
+      <div><h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Newsletter</h4><p class="text-xs text-white/40 mb-3">Stay informed with care tips and updates.</p><form class="flex rounded-xl overflow-hidden border border-white/10" onsubmit="event.preventDefault();showMsg('✓ Subscribed!');"><input type="email" placeholder="Email address" required class="flex-1 bg-white/5 border-none px-4 py-2.5 text-xs text-white placeholder-white/25 outline-none"><button type="submit" class="bg-orange text-white border-none px-4 py-2.5 text-xs font-semibold cursor-pointer hover:bg-orange-600 transition-colors">Join</button></form></div>
+    </div>
+    <div class="border-t border-white/6 pt-5 flex flex-wrap justify-between items-center gap-3"><p class="text-xs text-white/25">© 2024 CareConnect Inc. All rights reserved.</p><p class="text-xs text-white/20">Designed with care.</p></div>
+  </div>
+</footer>
+
+<div id="msg-box" class="fixed bottom-6 right-6 bg-ink text-white px-5 py-3 rounded-2xl text-sm font-medium shadow-2xl opacity-0 translate-y-2 transition-all duration-300 z-50 pointer-events-none"></div>
+
+<script>
+  window.addEventListener('scroll',function(){document.getElementById('topnav').classList.toggle('shadow-lg',window.scrollY>30);});
+  var menuOpen=false;
+  document.getElementById('menu-btn').addEventListener('click',function(){
+    menuOpen=!menuOpen;
+    var box=document.getElementById('menu-box');
+    box.classList.toggle('hidden',!menuOpen);box.classList.toggle('flex',menuOpen);
+    document.getElementById('b1').style.transform=menuOpen?'translateY(8px) rotate(45deg)':'';
+    document.getElementById('b2').style.opacity=menuOpen?'0':'1';
+    document.getElementById('b3').style.transform=menuOpen?'translateY(-8px) rotate(-45deg)':'';
+  });
+  document.getElementById('menu-box').querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      menuOpen=false;
+      document.getElementById('menu-box').classList.add('hidden');
+      document.getElementById('menu-box').classList.remove('flex');
+      document.getElementById('b1').style.transform='';
+      document.getElementById('b2').style.opacity='1';
+      document.getElementById('b3').style.transform='';
+    });
+  });
+  document.querySelectorAll('.show-up').forEach(function(el){
+    new IntersectionObserver(function(items){items.forEach(function(i){if(i.isIntersecting)i.target.classList.add('visible');});},{threshold:0.08}).observe(el);
+  });
+  function showMsg(text,isErr){
+    var box=document.getElementById('msg-box');
+    box.textContent=text;
+    box.className='fixed bottom-6 right-6 text-white px-5 py-3 rounded-2xl text-sm font-medium shadow-2xl z-50 transition-all duration-300 opacity-100 translate-y-0 '+(isErr?'bg-red-800':'bg-ink');
+    setTimeout(function(){box.className='fixed bottom-6 right-6 bg-ink text-white px-5 py-3 rounded-2xl text-sm font-medium shadow-2xl opacity-0 translate-y-2 transition-all duration-300 z-50 pointer-events-none';},3500);
+  }
+  var today=new Date();
+  document.getElementById('date').min=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+  document.getElementById('bookForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    this.querySelectorAll('[required]').forEach(function(f){f.style.borderBottomColor='';if(!f.value.trim()){ok=false;f.style.borderBottomColor='#c44';}});
+    if(!ok){showMsg('⚠ Please fill in all fields.',true);return;}
+    var btn=document.getElementById('sub-btn');
+    btn.textContent='✓ Secured!';btn.style.background='#2a7a4a';
+    var frm=this;
+    setTimeout(function(){
+      showMsg('✓ Request submitted! A coordinator will contact you.');
+      frm.reset();
+      btn.innerHTML='Secure Placement <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.style.background='';
+    },1100);
+  });
+</script>
+</body>
+</html>
