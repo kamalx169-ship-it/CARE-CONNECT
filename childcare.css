@@ -1,0 +1,84 @@
+/* ============================================================
+   childcare.css
+   CareConnect - Child Care Page
+   All custom styles. Tailwind handles utility classes.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. FONTS
+   ------------------------------------------------------------ */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ------------------------------------------------------------
+   2. HERO BACKGROUND PHOTO
+   ------------------------------------------------------------ */
+.hero-photo {
+    background: url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1920&q=80') center/cover;
+}
+
+/* ------------------------------------------------------------
+   3. SCROLL REVEAL ANIMATION
+   Elements start invisible and shifted down.
+   JavaScript adds .visible when they enter the viewport.
+   ------------------------------------------------------------ */
+.show-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.show-up.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ------------------------------------------------------------
+   4. CARE TAKER CARDS
+   .team-info panel slides up from the bottom on card hover.
+   .team-extra bio text fades in after the slide completes.
+   ------------------------------------------------------------ */
+.team-info {
+    transform: translateY(50px);
+    transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-info {
+    transform: translateY(0);
+}
+
+.team-extra {
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+}
+
+.team-card:hover .team-extra {
+    opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   5. SELECT - remove native browser arrow
+   ------------------------------------------------------------ */
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* ------------------------------------------------------------
+   6. CUSTOM SCROLLBAR
+   ------------------------------------------------------------ */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5b9bd5;
+    border-radius: 3px;
+}
