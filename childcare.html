@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareConnect - Child Care</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind custom theme config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        title: ['Playfair Display', 'serif'],
+                        body: ['Poppins', 'sans-serif']
+                    },
+                    colors: {
+                        navy: '#0d1b2a',
+                        ink: '#1a3557',
+                        blue: '#2563a8',
+                        sky: '#5b9bd5',
+                        pale: '#eaf2fb',
+                        mist: '#f4f8fc',
+                        stone: '#6b7a8d',
+                        gray2: '#b0bec5',
+                        orange: '#e07b3a'
+                    },
+                    keyframes: {
+                        goUp: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+                        marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+                        blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.3' } }
+                    },
+                    animation: {
+                        float: 'goUp 4s ease-in-out infinite',
+                        marquee: 'marquee 35s linear infinite',
+                        blink: 'blink 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Our custom CSS -->
+    <link rel="stylesheet" href="childcare.css">
+</head>
+
+<body class="bg-mist text-navy overflow-x-hidden">
+
+
+    <!-- ============================================================
+     NAV
+============================================================ -->
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-pale">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-[70px]">
+
+            <!-- Brand logo -->
+            <a href="index.html" class="flex flex-col items-start leading-none no-underline group">
+                <span
+                    style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:300; letter-spacing:0.18em; color:#1a3557; line-height:1;"
+                    class="group-hover:text-blue transition-colors">CARECONNECT</span>
+                <span
+                    style="font-family:'Poppins',sans-serif; font-size:0.52rem; font-weight:600; letter-spacing:0.25em; color:#6b7a8d; margin-top:3px;">CHILD
+                    CARE</span>
+            </a>
+
+            <!-- Desktop links -->
+            <ul class="hidden md:flex items-center gap-6 list-none">
+                <li><a href="index.html" class="text-sm text-stone hover:text-blue no-underline">Home</a></li>
+                <li><a href="services.html" class="text-sm text-stone hover:text-blue no-underline">Services</a></li>
+                <li><a href="elder-care.html" class="text-sm text-stone hover:text-blue no-underline">Elder Care</a>
+                </li>
+                <li><a href="child-care.html"
+                        class="text-sm text-blue border-b-2 border-orange pb-0.5 no-underline">Child Care</a></li>
+                <li><a href="quick-service.html" class="text-sm text-stone hover:text-blue no-underline">Quick
+                        Service</a></li>
+                <li><a href="#enroll"
+                        class="text-sm font-semibold bg-ink text-white px-5 py-2 rounded-full hover:bg-blue transition-colors no-underline">Enroll
+                        Now</a></li>
+            </ul>
+
+            <!-- Hamburger button (mobile only) -->
+            <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 bg-transparent border-none cursor-pointer p-1">
+                <span id="b1" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+                <span id="b2" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+                <span id="b3" class="block w-6 h-0.5 bg-navy rounded transition-all duration-300"></span>
+            </button>
+        </div>
+
+        <!-- Mobile dropdown menu -->
+        <div id="menu-box" class="hidden flex-col bg-white border-t border-pale px-6 py-4 gap-3 md:hidden">
+            <a href="index.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Home</a>
+            <a href="services.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Services</a>
+            <a href="elder-care.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Elder
+                Care</a>
+            <a href="child-care.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Child
+                Care</a>
+            <a href="quick-service.html" class="text-sm text-navy py-2 border-b border-pale no-underline block">Quick
+                Service</a>
+            <a href="#enroll"
+                class="block text-center text-sm font-semibold bg-ink text-white py-3 rounded-xl mt-2 no-underline">Enroll
+                Now</a>
+        </div>
+    </nav>
+
+
+    <!-- ============================================================
+     HERO
+============================================================ -->
+    <header class="relative min-h-screen flex items-center pt-[70px] bg-navy overflow-hidden">
+        <!-- Background photo (class defined in childcare.css) -->
+        <div class="hero-photo absolute inset-0 opacity-20"></div>
+        <!-- Dark gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-ink/60"></div>
+
+        <div class="max-w-6xl mx-auto px-6 w-full py-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+                <!-- Left: headline + buttons + stats -->
+                <div>
+                    <!-- Blinking badge -->
+                    <div
+                        class="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-sky/80 border border-sky/30 px-4 py-1.5 rounded-full mb-6">
+                        <span class="w-1.5 h-1.5 bg-sky rounded-full animate-blink"></span> Specialist Child Care
+                    </div>
+
+                    <h1 class="font-title text-6xl lg:text-7xl font-normal text-white leading-[1.1] mb-5">
+                        Nurturing<br><em class="text-amber-300 italic">Every</em><br>Unique Mind
+                    </h1>
+
+                    <p class="text-lg text-white/60 font-light leading-relaxed max-w-lg mb-8">
+                        Expert, compassionate crèche care for specially-abled children - certified specialists in a
+                        sensory-safe, joy-filled environment.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#enroll"
+                            class="inline-flex items-center gap-2 bg-blue text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:-translate-y-0.5 transition-all no-underline">
+                            Enroll Your Child
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
+                                stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <a href="#why"
+                            class="inline-flex items-center gap-2 text-white border border-white/35 px-7 py-3 rounded-full text-sm hover:bg-white/10 transition-all no-underline">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <!-- Stats row -->
+                    <div class="grid grid-cols-3 border-t border-white/10 mt-10 pt-7">
+                        <div class="pr-6 border-r border-white/10">
+                            <div class="font-title text-4xl text-amber-300">250+</div>
+                            <div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Happy children</div>
+                        </div>
+                        <div class="px-6 border-r border-white/10">
+                            <div class="font-title text-4xl text-amber-300">98%</div>
+                            <div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Parent satisfaction
+                            </div>
+                        </div>
+                        <div class="pl-6">
+                            <div class="font-title text-4xl text-amber-300">8 Yrs</div>
+                            <div class="text-[11px] text-white/45 uppercase tracking-wide mt-1">Experience</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: images + floating 1:3 ratio card -->
+                <div class="relative h-[480px] hidden lg:block">
+                    <!-- Main large image -->
+                    <div
+                        class="absolute right-0 top-0 w-[72%] h-[82%] rounded-[32px_32px_32px_80px] overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover" alt="Child care" loading="lazy">
+                    </div>
+                    <!-- Small image bottom-left -->
+                    <div
+                        class="absolute left-0 bottom-0 w-[50%] h-[54%] rounded-[80px_32px_32px_32px] overflow-hidden shadow-xl border-4 border-navy">
+                        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=600&q=80"
+                            class="w-full h-full object-cover" alt="Child therapy" loading="lazy">
+                    </div>
+                    <!-- Floating 1:3 ratio badge (animate-float defined in Tailwind config) -->
+                    <div class="absolute bottom-[30%] left-0 z-20 animate-float">
+                        <div
+                            class="bg-ink border border-sky/30 rounded-2xl px-5 py-4 shadow-2xl flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-sky/15 border border-sky/30 flex items-center justify-center flex-shrink-0">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b9bd5"
+                                    stroke-width="1.8">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-title text-3xl text-amber-300 leading-none">1:3</div>
+                                <div class="text-[11px] text-white/60 uppercase tracking-widest mt-1">Carer-to-Child
+                                    Ratio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+     WHY CARECONNECT
+============================================================ -->
+    <section class="bg-pale py-20" id="why">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="show-up text-center max-w-2xl mx-auto mb-12">
+                <div
+                    class="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                    Why CareConnect <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+                <h2 class="font-title text-4xl font-normal leading-snug">A new standard for <em
+                        class="italic text-blue">child care</em></h2>
+                <p class="text-[15px] text-stone font-light leading-relaxed mt-4">We believe every specially-abled child
+                    deserves a space where they are celebrated, not just cared for - where every milestone matters and
+                    every moment is purposeful.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                <div
+                    class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 bg-blue/10 rounded-xl flex items-center justify-center text-xl mb-4">🎓</div>
+                    <h3 class="font-title text-base font-bold mb-2">Certified Specialists</h3>
+                    <p class="text-xs text-stone leading-relaxed mb-3">Every caregiver passes a 7-step screening - ABA
+                        certification, background checks, clinical assessment, and a probationary trial.</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">ABA
+                            Certified</span>
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">ISO
+                            Approved</span>
+                    </div>
+                </div>
+
+                <div
+                    class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 bg-orange/10 rounded-xl flex items-center justify-center text-xl mb-4">🏗️
+                    </div>
+                    <h3 class="font-title text-base font-bold mb-2">Sensory-Safe Spaces</h3>
+                    <p class="text-xs text-stone leading-relaxed mb-3">Purpose-designed facility with sensory rooms,
+                        quiet corners, tactile walls, and stimulation zones crafted by occupational therapists.</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span
+                            class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800">Sensory
+                            Room</span>
+                        <span
+                            class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800">Therapy
+                            Gym</span>
+                    </div>
+                </div>
+
+                <div
+                    class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 bg-ink/10 rounded-xl flex items-center justify-center text-xl mb-4">📱</div>
+                    <h3 class="font-title text-base font-bold mb-2">Family Transparency</h3>
+                    <p class="text-xs text-stone leading-relaxed mb-3">Live activity updates, therapy logs, daily
+                        progress photos, and milestone reports - so you're always connected even at work.</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Live
+                            Updates</span>
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Alerts</span>
+                    </div>
+                </div>
+
+                <div
+                    class="show-up bg-white rounded-2xl p-6 border border-blue/10 hover:border-orange/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 bg-navy/10 rounded-xl flex items-center justify-center text-xl mb-4">🧩</div>
+                    <h3 class="font-title text-base font-bold mb-2">Personalised IEP</h3>
+                    <p class="text-xs text-stone leading-relaxed mb-3">Every child receives a custom Individual
+                        Education Plan - built after assessment and co-designed with parents, therapists, and educators.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Custom
+                            IEP</span>
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Monthly
+                            Reviews</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     PROGRAMS
+============================================================ -->
+    <section class="bg-white py-20">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-14">
+                <div class="show-up rounded-3xl overflow-hidden h-80 lg:h-96">
+                    <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?auto=format&fit=crop&w=900&q=80"
+                        class="w-full h-full object-cover" alt="Child program" loading="lazy">
+                </div>
+                <div class="show-up">
+                    <div
+                        class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                        Specialised Programs <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+                    <h2 class="font-title text-4xl font-normal leading-snug">Enriching <em
+                            class="italic text-blue">mind,<br>body</em> &amp; joy</h2>
+                    <p class="text-[15px] text-stone font-light leading-relaxed mt-4">Each program targets a specific
+                        developmental need - working alongside daily crèche care to give every child a complete,
+                        personalised growth journey.</p>
+                    <a href="#enroll"
+                        class="mt-6 inline-flex items-center gap-2 bg-blue text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-ink hover:-translate-y-0.5 transition-all no-underline">
+                        Design a Custom Program
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="show-up grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">🧠</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">Early Intervention</h4>
+                    <p class="text-xs text-stone leading-relaxed">ABA, speech and motor therapy during critical
+                        formative years</p>
+                </div>
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">🎡</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">Sensory Integration</h4>
+                    <p class="text-xs text-stone leading-relaxed">Sensory gym and tactile sessions to build
+                        environmental tolerance</p>
+                </div>
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">🎨</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">Art &amp; Music Therapy</h4>
+                    <p class="text-xs text-stone leading-relaxed">Creative expression to improve regulation and social
+                        connection</p>
+                </div>
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">🗣️</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">Speech Therapy</h4>
+                    <p class="text-xs text-stone leading-relaxed">Language pathology and communication building for all
+                        levels</p>
+                </div>
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">🤸</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">Physiotherapy</h4>
+                    <p class="text-xs text-stone leading-relaxed">Gait, balance, hydrotherapy and adaptive sports for
+                        motor challenges</p>
+                </div>
+                <div
+                    class="bg-mist rounded-2xl p-6 text-center hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+                    <span class="text-4xl block mb-3">📚</span>
+                    <h4 class="font-semibold text-sm text-navy mb-1.5">After-School Care</h4>
+                    <p class="text-xs text-stone leading-relaxed">Homework support, social skills groups and optional
+                        therapy top-up</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     NUTRITION & HEALTH  (dark ink background)
+============================================================ -->
+    <section class="bg-ink py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <div class="show-up">
+                    <div
+                        class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-amber-300 mb-3">
+                        Health &amp; Nutrition <span class="w-10 h-0.5 bg-amber-300 opacity-60"></span></div>
+                    <h2 class="font-title text-4xl font-normal leading-snug text-white">Food is <em
+                            class="italic text-amber-300">medicine</em> -<br>we take it seriously</h2>
+                    <p class="text-[15px] text-white/60 font-light leading-relaxed mt-4 mb-8">Proper nutrition underpins
+                        every child's development. Our care takers, guided by dietitian-approved protocols, ensure every
+                        meal supports each child's individual health and sensory needs.</p>
+                    <ul class="space-y-3 list-none">
+                        <li class="flex items-start gap-3 text-sm text-white/80"><span
+                                class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Dietitian-approved,
+                            allergy-conscious meal plans for every child</li>
+                        <li class="flex items-start gap-3 text-sm text-white/80"><span
+                                class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Sensory
+                            food preferences respected - texture and taste-sensitive menus</li>
+                        <li class="flex items-start gap-3 text-sm text-white/80"><span
+                                class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Hydration
+                            monitoring with hourly check-ins throughout the day</li>
+                        <li class="flex items-start gap-3 text-sm text-white/80"><span
+                                class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Daily
+                            health vitals - temperature, mood, energy logged and reported</li>
+                        <li class="flex items-start gap-3 text-sm text-white/80"><span
+                                class="w-5 h-5 mt-0.5 rounded-full bg-sky/20 border border-sky/40 flex items-center justify-center text-[10px] text-sky flex-shrink-0">✓</span>Weekly
+                            health summary reports delivered directly to parent app</li>
+                    </ul>
+                </div>
+
+                <div class="show-up hidden lg:flex flex-col gap-4">
+                    <div class="w-full h-[300px] rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover" alt="Child nutrition" loading="lazy">
+                    </div>
+                    <div class="w-[60%] bg-white/10 border border-white/15 rounded-2xl p-5 text-white">
+                        <div class="text-2xl mb-2">🍱</div>
+                        <h4 class="font-semibold text-sm">Daily Meal Plan</h4>
+                        <p class="text-xs text-white/50 mt-1">Dietitian-reviewed menus updated weekly per child</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     FAMILY PORTAL
+============================================================ -->
+    <section class="bg-pale py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+                <div class="show-up">
+                    <div
+                        class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                        Family Portal <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+                    <h2 class="font-title text-4xl font-normal leading-snug">Total transparency.<br><em
+                            class="italic text-blue">Total peace</em> of mind.</h2>
+                    <p class="text-[15px] text-stone font-light leading-relaxed mt-4">Never wonder about your child's
+                        day. Our secure portal delivers real-time updates to your device - keeping you connected without
+                        intruding on their care and growth.</p>
+                    <div class="grid grid-cols-2 gap-4 mt-7">
+                        <div
+                            class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                            <span class="text-2xl block mb-2">📅</span>
+                            <h4 class="font-semibold text-sm text-navy mb-1">Daily Care Reports</h4>
+                            <p class="text-xs text-stone leading-relaxed">Detailed logs of meals, mood, therapy
+                                sessions, and activities</p>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                            <span class="text-2xl block mb-2">🧩</span>
+                            <h4 class="font-semibold text-sm text-navy mb-1">Milestone Tracking</h4>
+                            <p class="text-xs text-stone leading-relaxed">IEP progress, therapy goals, and developmental
+                                milestones</p>
+                        </div>
+                        <div
+                            class="bg-white rounded-2xl p-5 border border-blue/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                            <span class="text-2xl block mb-2">📸</span>
+                            <h4 class="font-semibold text-sm text-navy mb-1">Activity Photos</h4>
+                            <p class="text-xs text-stone leading-relaxed">Daily snapshots showing your child is thriving
+                                and happy</p>
+                        </div>
+                        <div
+                            class="bg-red-50 rounded-2xl p-5 border border-red-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                            <span class="text-2xl block mb-2">⚠️</span>
+                            <h4 class="font-semibold text-sm text-red-900 mb-1">Emergency Alerts</h4>
+                            <p class="text-xs text-red-500 leading-relaxed">Instant push notifications for anything that
+                                needs your attention</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="show-up relative h-[480px] hidden lg:block">
+                    <div class="absolute top-[4%] right-0 w-[86%] h-[88%] rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover" alt="Family app" loading="lazy">
+                    </div>
+                    <div
+                        class="absolute bottom-8 left-0 bg-white rounded-2xl p-5 shadow-2xl w-[62%] flex items-center gap-3 animate-float">
+                        <div
+                            class="w-11 h-11 bg-pale rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                            ✅</div>
+                        <div>
+                            <h5 class="font-semibold text-sm text-navy">Speech session completed</h5>
+                            <p class="text-xs text-stone mt-0.5">Aryan hit a new communication milestone today!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+    <section class="bg-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                What Families Say <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+            <h2 class="font-title text-4xl font-normal leading-snug mb-10">Real stories from <em
+                    class="italic text-blue">real families</em></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col">
+                    <div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div>
+                    <p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"CareConnect has been a
+                        life-changer for our son Aryan. The therapists truly understand him - his progress fills us with
+                        joy. The daily reports keep us connected even at work."</p>
+                    <div class="flex items-center gap-2.5 mt-auto">
+                        <div
+                            class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">
+                            MK</div>
+                        <div>
+                            <div class="text-xs font-semibold text-navy">Meena Krishnamurthy</div>
+                            <div class="text-xs text-gray2">Mother of Aryan, 6</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col">
+                    <div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div>
+                    <p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"After trying multiple centres,
+                        CareConnect was the first place where our daughter Riya genuinely felt safe and happy. The
+                        sensory room is incredible - staff patience is unmatched."</p>
+                    <div class="flex items-center gap-2.5 mt-auto">
+                        <div
+                            class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">
+                            SI</div>
+                        <div>
+                            <div class="text-xs font-semibold text-navy">Suresh Iyer</div>
+                            <div class="text-xs text-gray2">Father of Riya, 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col">
+                    <div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div>
+                    <p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"The personalised IEP and monthly
+                        counselling sessions have helped our whole family grow. Our son has started communicating in
+                        ways we never imagined. Forever grateful."</p>
+                    <div class="flex items-center gap-2.5 mt-auto">
+                        <div
+                            class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">
+                            AR</div>
+                        <div>
+                            <div class="text-xs font-semibold text-navy">Anitha Ramachandran</div>
+                            <div class="text-xs text-gray2">Mother of Dev, 7</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-blue/10 shadow-md flex flex-col">
+                    <div class="text-yellow-500 tracking-[3px] text-sm mb-3">★★★★★</div>
+                    <p class="text-sm text-stone italic leading-relaxed mb-5 flex-1">"Meera's art therapy sessions
+                        transformed our daughter completely. She went from refusing to interact to leading group
+                        activities. The team's dedication is extraordinary."</p>
+                    <div class="flex items-center gap-2.5 mt-auto">
+                        <div
+                            class="w-9 h-9 rounded-full bg-blue/15 flex items-center justify-center text-xs font-bold text-blue flex-shrink-0">
+                            PV</div>
+                        <div>
+                            <div class="text-xs font-semibold text-navy">Priya Venkatesh</div>
+                            <div class="text-xs text-gray2">Mother of Shreya, 5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     CARE TAKERS
+     .team-card / .team-info / .team-extra styles in childcare.css
+============================================================ -->
+    <section class="bg-pale py-20">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="show-up text-center max-w-2xl mx-auto mb-12">
+                <div
+                    class="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                    Our Care Takers <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+                <h2 class="font-title text-4xl font-normal leading-snug">Meet our dedicated<br><em
+                        class="italic text-blue">care takers</em></h2>
+                <p class="text-sm text-stone font-light mt-4">Hover over any card to learn about each care taker's
+                    speciality and experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-blue/20 to-sky/10 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👩‍🍼</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Ananya Krishnan</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Senior Care Taker · 8 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">ABA expert specialising in
+                                autism and ADHD. Known for her gentle, patient approach with non-verbal children.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Autism</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">ADHD</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">ABA</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.9 / 5.0 · 142 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div
+                        class="h-44 bg-gradient-to-br from-orange/15 to-amber-50 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👨‍🦱</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Ravi Shankar</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Physical Care Taker · 6 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">Mobility assistance and
+                                adaptive movement specialist. Works with Cerebral Palsy and motor delays.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">Cerebral
+                                Palsy</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">Motor
+                                Skills</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.8 / 5.0 · 118 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-sky/25 to-pale flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👩‍🎨</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Meera Pillai</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Creative Care Taker · 5 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">Art and music therapist
+                                engaging children with Down Syndrome and sensory processing disorders through creative
+                                play.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Down
+                                Syndrome</span>
+                            <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Art
+                                Therapy</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">5.0 / 5.0 · 97 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-navy/20 to-ink/10 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👨‍🍼</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Sunil Varma</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Sensory Care Taker · 7 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">Sensory diet implementation
+                                and alternative communication expert for non-verbal and SPD children.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">SPD</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Non-verbal</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.9 / 5.0 · 134 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div
+                        class="h-44 bg-gradient-to-br from-orange/20 to-amber-50 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👩‍⚕️</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Divya Nataraj</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Medical Care Taker · 10 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">Specialist in epilepsy
+                                protocols, daily health monitoring and medical care coordination for complex conditions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">Epilepsy</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">Health
+                                Monitor</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.7 / 5.0 · 89 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-blue/20 to-sky/10 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">🧑‍🏫</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Kiran Babu</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Learning Care Taker · 4 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">IEP implementation
+                                specialist focused on learning delay support and adaptive educational activities.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Learning
+                                Delay</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">IEP</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.8 / 5.0 · 76 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-orange/15 to-pale flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👩‍🦰</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Preethi Suresh</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Behavioural Care Taker · 9 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">Certified ABA therapist
+                                managing complex behavioural needs with positive reinforcement strategies.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">ABA
+                                Therapy</span>
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700">Behaviour</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">5.0 / 5.0 · 111 reviews</p>
+                    </div>
+                </div>
+
+                <div
+                    class="team-card show-up bg-white rounded-2xl overflow-hidden shadow border border-blue/10 hover:shadow-xl transition-all duration-300 relative">
+                    <div class="h-44 bg-gradient-to-br from-sky/20 to-blue/10 flex items-end overflow-hidden relative">
+                        <div class="text-7xl absolute top-4 left-1/2 -translate-x-1/2 select-none">👨‍🦽</div>
+                        <div class="team-info w-full bg-ink/90 px-5 pt-4 pb-5">
+                            <h3 class="font-title text-base text-white mb-0.5">Arjun Menon</h3>
+                            <p class="text-[11px] text-sky font-semibold mb-2">Mobility Care Taker · 11 Yrs</p>
+                            <p class="team-extra text-[11px] text-white/65 leading-relaxed">11 years supporting
+                                wheelchair mobility, adaptive transport and physiotherapy assistance for children.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 py-4">
+                        <div class="text-yellow-500 tracking-[3px] text-xs mb-2">★★★★</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Wheelchair</span>
+                            <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-pale text-blue">Physio
+                                Aid</span>
+                        </div>
+                        <p class="text-[10px] text-stone mt-2">4.6 / 5.0 · 103 reviews</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     CARE PLANS
+     setBilling() in childcare.js swaps prices when tabs clicked
+============================================================ -->
+    <section class="bg-mist py-20" id="plans">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="text-center max-w-2xl mx-auto mb-12 show-up">
+                <div
+                    class="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[3px] uppercase text-orange mb-3">
+                    Our Care Plans <span class="w-10 h-0.5 bg-orange opacity-60"></span></div>
+                <h2 class="font-title text-4xl font-normal leading-snug text-navy">Flexible plans for every <em
+                        class="italic text-blue">family's need</em></h2>
+                <p class="text-sm text-stone font-light mt-4">Same great care. Choose Monthly, 6-Month or Annual -
+                    longer plans save more.</p>
+
+                <!-- Billing tabs - onclick calls setBilling() in childcare.js -->
+                <div class="flex justify-center mt-6 gap-2">
+                    <button id="tab-monthly" onclick="setBilling('monthly')" type="button"
+                        class="px-5 py-2 rounded-full text-xs font-semibold border border-blue/20 transition-all duration-200 bg-ink text-white">Monthly</button>
+                    <button id="tab-sixmonth" onclick="setBilling('sixmonth')" type="button"
+                        class="px-5 py-2 rounded-full text-xs font-semibold border border-blue/20 transition-all duration-200 text-stone bg-white hover:bg-pale">6
+                        Months <span
+                            class="bg-orange text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 font-bold">-10%</span></button>
+                    <button id="tab-annual" onclick="setBilling('annual')" type="button"
+                        class="px-5 py-2 rounded-full text-xs font-semibold border border-blue/20 transition-all duration-200 text-stone bg-white hover:bg-pale">Yearly
+                        <span
+                            class="bg-orange text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 font-bold">-20%</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+
+                <!-- SEEDLING -->
+                <div class="show-up bg-white rounded-2xl border border-blue/10 shadow-md flex flex-col overflow-hidden">
+                    <div class="px-7 pt-7 pb-6 border-b border-blue/10">
+                        <div class="text-[10px] font-semibold tracking-[2px] uppercase text-stone mb-2">Starter</div>
+                        <h3 class="font-title text-2xl font-normal text-navy">🌱 Seedling</h3>
+                        <!-- id="price-seedling" and id="note-seedling" are updated by setBilling() in childcare.js -->
+                        <div id="price-seedling" class="flex items-end gap-1 mt-3 mb-1"><span
+                                class="font-title text-4xl text-blue leading-none">₹2,999</span><span
+                                class="text-sm text-stone mb-1">/mo</span></div>
+                        <p id="note-seedling" class="text-[11px] text-stone mb-4">Billed ₹2,999 monthly</p>
+                        <a href="#enroll"
+                            class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get
+                            Started</a>
+                    </div>
+                    <div class="px-7 py-5 flex flex-col flex-1">
+                        <ul class="space-y-2.5 flex-1">
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>5 days/week crèche access</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Daily activity reports</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Group sensory play sessions</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Nutritious meals (Mon-Fri)</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Basic health monitoring</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Monthly parent meeting</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>24/7 care support line</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-blue/10 text-center"><span
+                                class="text-[11px] font-semibold text-orange">🎁 7-day free trial included</span></div>
+                    </div>
+                </div>
+
+                <!-- BLOSSOM (most popular) -->
+                <div class="show-up bg-white rounded-2xl border-2 border-blue shadow-xl flex flex-col overflow-hidden">
+                    <div class="bg-blue text-white text-[10px] font-bold tracking-[2px] uppercase text-center py-2">⭐
+                        Most Popular</div>
+                    <div class="px-7 pt-5 pb-6 border-b border-blue/10">
+                        <div class="text-[10px] font-semibold tracking-[2px] uppercase text-blue mb-2">Recommended</div>
+                        <h3 class="font-title text-2xl font-normal text-navy">🌸 Blossom</h3>
+                        <div id="price-blossom" class="flex items-end gap-1 mt-3 mb-1"><span
+                                class="font-title text-4xl text-blue leading-none">₹5,499</span><span
+                                class="text-sm text-stone mb-1">/mo</span></div>
+                        <p id="note-blossom" class="text-[11px] text-stone mb-4">Billed ₹5,499 monthly</p>
+                        <a href="#enroll"
+                            class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get
+                            Started</a>
+                    </div>
+                    <div class="px-7 py-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 bg-blue/5 rounded-lg px-3 py-2 mb-3"><span
+                                class="text-blue text-xs">←</span><span
+                                class="text-xs text-stone font-medium">Everything in Seedling, plus:</span></div>
+                        <ul class="space-y-2.5 flex-1">
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>6 days/week crèche access</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>8 one-on-one therapy sessions/month
+                            </li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Speech &amp; occupational therapy
+                            </li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Real-time parent app access</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Monthly progress reports</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Personalised IEP created</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Nutritious meals (6 days)</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-blue/10 text-center"><span
+                                class="text-[11px] font-semibold text-orange">🎁 7-day free trial included</span></div>
+                    </div>
+                </div>
+
+                <!-- BLOOM -->
+                <div class="show-up bg-white rounded-2xl border border-blue/10 shadow-md flex flex-col overflow-hidden">
+                    <div class="px-7 pt-7 pb-6 border-b border-blue/10">
+                        <div class="text-[10px] font-semibold tracking-[2px] uppercase text-stone mb-2">Premium</div>
+                        <h3 class="font-title text-2xl font-normal text-navy">🌺 Bloom</h3>
+                        <div id="price-bloom" class="flex items-end gap-1 mt-3 mb-1"><span
+                                class="font-title text-4xl text-blue leading-none">₹8,999</span><span
+                                class="text-sm text-stone mb-1">/mo</span></div>
+                        <p id="note-bloom" class="text-[11px] text-stone mb-4">Billed ₹8,999 monthly</p>
+                        <a href="#enroll"
+                            class="block text-center bg-blue text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-ink transition-colors no-underline">Get
+                            Started</a>
+                    </div>
+                    <div class="px-7 py-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 bg-blue/5 rounded-lg px-3 py-2 mb-3"><span
+                                class="text-blue text-xs">←</span><span
+                                class="text-xs text-stone font-medium">Everything in Blossom, plus:</span></div>
+                        <ul class="space-y-2.5 flex-1">
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>7 days/week crèche access</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Dedicated personal care taker</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Unlimited therapy sessions</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Weekly parent counselling</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>2 home visit sessions/month</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Priority emergency support 24/7</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>Full IEP + quarterly review</li>
+                            <li class="flex gap-2.5 text-xs text-stone"><span
+                                    class="text-blue flex-shrink-0 mt-0.5">✓</span>GPS-tracked transport included</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-blue/10 text-center"><span
+                                class="text-[11px] font-semibold text-orange">🎁 7-day free trial included</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <p class="show-up text-center text-xs text-stone mt-8">All plans include access to the CareConnect family
+                app · No hidden charges · Cancel anytime</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     ENROLL FORM
+     Form validation handled by childcare.js (enrollForm listener)
+     Duration change handled by childcare.js (duration listener)
+============================================================ -->
+    <section class="bg-white py-20" id="enroll">
+        <div class="max-w-6xl mx-auto px-6">
+            <div
+                class="show-up grid grid-cols-1 md:grid-cols-5 rounded-3xl overflow-hidden shadow-2xl border border-blue/10">
+
+                <!-- Left dark panel -->
+                <div class="md:col-span-2 bg-ink p-10 lg:p-12 flex flex-col relative overflow-hidden">
+                    <div class="absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-sky/10 pointer-events-none">
+                    </div>
+                    <h2 class="font-title text-4xl font-normal italic text-white leading-snug mb-4 relative z-10">Enroll
+                        Your<br>Child Today</h2>
+                    <p class="text-sm text-white/55 font-light leading-relaxed mb-auto pb-8 relative z-10">We accept a
+                        limited number of new families each month to maintain the highest care standards. Complete your
+                        details to secure your child's place.</p>
+                    <div
+                        class="mt-auto flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl p-4 relative z-10">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-orange/20 flex items-center justify-center text-lg flex-shrink-0">
+                            📞</div>
+                        <div>
+                            <div class="text-[10px] uppercase tracking-widest text-white/40 mb-0.5">Direct Line</div>
+                            <div class="font-title text-lg text-white">+91 98765 43210</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right form -->
+                <div class="md:col-span-3 bg-white p-10 lg:p-12">
+                    <h3 class="font-title text-2xl font-bold text-navy mb-8">Tell us about your child</h3>
+                    <form id="enrollForm" novalidate>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                            <div class="flex flex-col gap-1.5"><label
+                                    class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                    for="pname">Parent's Name</label><input type="text" id="pname"
+                                    placeholder="Your name" required
+                                    class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-1.5"><label
+                                    class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                    for="cname">Child's Name</label><input type="text" id="cname"
+                                    placeholder="Child's name" required
+                                    class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-blue/10 my-4"></div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                            <div class="flex flex-col gap-1.5"><label
+                                    class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                    for="phone">Phone</label><input type="tel" id="phone" placeholder="+91 00000 00000"
+                                    required
+                                    class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-1.5"><label
+                                    class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                    for="email">Email</label><input type="email" id="email" placeholder="you@email.com"
+                                    required
+                                    class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none placeholder-gray2 focus:border-orange transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-blue/10 my-4"></div>
+
+                        <!-- Billing duration: childcare.js listens on #duration and updates #plan options -->
+                        <div class="flex flex-col gap-1.5 mb-5">
+                            <label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                for="duration">Billing Duration</label>
+                            <div class="relative">
+                                <select id="duration" required
+                                    class="w-full bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none cursor-pointer pr-5">
+                                    <option value="" disabled selected>Select duration...</option>
+                                    <option value="3month">3 Months</option>
+                                    <option value="6month">6 Months (Save 10%)</option>
+                                    <option value="yearly">Yearly (Save 20%)</option>
+                                </select>
+                                <span
+                                    class="absolute right-0 top-1/2 -translate-y-1/2 text-stone text-sm pointer-events-none">↓</span>
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-blue/10 my-4"></div>
+
+                        <!-- Care plan: options updated dynamically by childcare.js when duration changes -->
+                        <div class="flex flex-col gap-1.5 mb-5">
+                            <label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone" for="plan">Care
+                                Plan</label>
+                            <div class="relative">
+                                <select id="plan" required
+                                    class="w-full bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none cursor-pointer pr-5">
+                                    <option value="" disabled selected>Select a plan...</option>
+                                    <option value="seedling">Seedling - Rs.2,999/mo</option>
+                                    <option value="blossom">Blossom - Rs.5,499/mo</option>
+                                    <option value="bloom">Bloom - Rs.8,999/mo</option>
+                                </select>
+                                <span
+                                    class="absolute right-0 top-1/2 -translate-y-1/2 text-stone text-sm pointer-events-none">↓</span>
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-blue/10 my-4"></div>
+
+                        <!-- Date: min date set by childcare.js on page load -->
+                        <div class="flex flex-col gap-1.5 mb-8">
+                            <label class="text-[10px] font-semibold uppercase tracking-[2px] text-stone"
+                                for="date">Preferred Start Date</label>
+                            <input type="date" id="date" required
+                                class="bg-transparent border-0 border-b border-blue/20 pb-2 text-base text-navy outline-none focus:border-orange transition-colors">
+                        </div>
+
+                        <button type="submit" id="enroll-btn"
+                            class="w-full bg-ink text-white py-4 rounded-2xl text-base font-semibold flex items-center justify-center gap-2 hover:bg-blue hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
+                            Secure Enrolment
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
+                                stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+     FOOTER
+============================================================ -->
+    <footer class="bg-navy pt-16 pb-7">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+
+                <div>
+                    <a href="index.html" class="flex flex-col items-start leading-none no-underline mb-5">
+                        <span
+                            style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; letter-spacing:0.18em; color:#e8f2fb; line-height:1;">CARECONNECT</span>
+                        <span
+                            style="font-family:'Poppins',sans-serif; font-size:0.5rem; font-weight:600; letter-spacing:0.25em; color:rgba(255,255,255,0.35); margin-top:3px;">CHILD
+                            CARE</span>
+                    </a>
+                    <p class="text-sm text-white/40 leading-relaxed">Celebrating every specially-abled child's unique
+                        potential with compassionate, certified care in a joyful, sensory-safe environment.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Services</h4>
+                    <ul class="space-y-3 list-none">
+                        <li><a href="elder-care.html"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Elder
+                                Care</a></li>
+                        <li><a href="child-care.html"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Child
+                                Care</a></li>
+                        <li><a href="quick-service.html"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Quick
+                                Service</a></li>
+                        <li><a href="services.html"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">All
+                                Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Company</h4>
+                    <ul class="space-y-3 list-none">
+                        <li><a href="#"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Contact</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Careers</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sm text-white/50 hover:text-amber-300 transition-colors no-underline">Privacy
+                                Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] font-semibold uppercase tracking-[2px] text-white/30 mb-4">Newsletter</h4>
+                    <p class="text-xs text-white/40 mb-3">Stay informed with care tips and updates.</p>
+                    <!-- onsubmit calls showMsg() defined in childcare.js -->
+                    <form class="flex rounded-xl overflow-hidden border border-white/10"
+                        onsubmit="event.preventDefault(); showMsg('Subscribed!');">
+                        <input type="email" placeholder="Email address" required
+                            class="flex-1 bg-white/5 border-none px-4 py-2.5 text-xs text-white placeholder-white/25 outline-none">
+                        <button type="submit"
+                            class="bg-orange text-white border-none px-4 py-2.5 text-xs font-semibold cursor-pointer hover:bg-orange-600 transition-colors">Join</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="border-t border-white/6 pt-5 flex flex-wrap justify-between items-center gap-3">
+                <p class="text-xs text-white/25">© 2024 CareConnect Inc. All rights reserved.</p>
+                <p class="text-xs text-white/20">Designed with care.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Toast notification box (shown/hidden by showMsg() in childcare.js) -->
+    <div id="msg-box"
+        class="fixed bottom-6 right-6 bg-ink text-white px-5 py-3 rounded-2xl text-sm font-medium shadow-2xl opacity-0 translate-y-2 transition-all duration-300 z-50 pointer-events-none">
+    </div>
+
+
+    <!-- Our JavaScript file - loaded last so all DOM elements exist -->
+    <script src="childcare.js"></script>
+
+</body>
+
+</html>
